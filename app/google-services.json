@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "216326850498",
+    "project_id": "emret-2bb16",
+    "storage_bucket": "emret-2bb16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216326850498:android:99de96e4d1ec40a6f6f85b",
+        "android_client_info": {
+          "package_name": "com.example.emr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9_BxQtioJMIwI69vgSEF2nAUspVE2FFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
