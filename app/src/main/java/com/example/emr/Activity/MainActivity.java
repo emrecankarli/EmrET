@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.emr.Adapter.BestFoodsAdapter;
+import com.example.emr.Adapter.CategoryAdapter;
 import com.example.emr.Domain.Category;
 import com.example.emr.Domain.Foods;
 import com.example.emr.Domain.Location;
@@ -18,6 +19,7 @@ import com.example.emr.Domain.Price;
 import com.example.emr.Domain.Time;
 import com.example.emr.R;
 import com.example.emr.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +42,24 @@ public class MainActivity extends BaseActivity {
         initTime();
         initPrice();
         initBestFood();
+        initCategory();
+        setVariable();
+    }
+
+    private void setVariable() {
+        binding.logoutBtn.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+        });
+        binding.searchBtn.setOnClickListener(v -> {
+            String text = binding.searchEdit.getText().toString();
+            if (!text.isEmpty()){
+                Intent intent = new Intent(MainActivity.this, ListFoodActivity.class);
+                intent.putExtra("text",text);
+                intent.putExtra("isSearch",true);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initBestFood() {
@@ -61,6 +81,34 @@ public class MainActivity extends BaseActivity {
                         binding.bestFoodView.setAdapter(adapterBestFood);
                     }
                     binding.progressBarBestFood.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void initCategory() {
+        DatabaseReference myref = database.getReference("Category");
+        binding.progressBarCategory.setVisibility(View.VISIBLE);
+        ArrayList<Category> list = new ArrayList<>();
+        myref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot issu : snapshot.getChildren()) {
+                        list.add(issu.getValue(Category.class));
+
+                    }
+                    if (list.size() > 0) {
+                        binding.categoryView.setLayoutManager(new GridLayoutManager(MainActivity.this,4));
+                        RecyclerView.Adapter adapterBestFood = new CategoryAdapter(list);
+                        binding.categoryView.setAdapter(adapterBestFood);
+                    }
+                    binding.progressBarCategory.setVisibility(View.GONE);
                 }
             }
 
