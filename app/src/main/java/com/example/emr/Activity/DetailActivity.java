@@ -8,12 +8,14 @@ import android.view.ViewOutlineProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.emr.Domain.Foods;
+import com.example.emr.Helper.ManagmentCart;
 import com.example.emr.databinding.ActivityDetailBinding;
 
 public class DetailActivity extends BaseActivity {
     private ActivityDetailBinding binding;
     private Foods object;
     private int num = 1;
+    private ManagmentCart managmentCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class DetailActivity extends BaseActivity {
     }
 
     private void setVariable() {
+        managmentCart = new ManagmentCart(this);
         binding.backBtn.setOnClickListener(v -> finish());
 
         Glide.with(DetailActivity.this)
@@ -51,6 +54,11 @@ public class DetailActivity extends BaseActivity {
                 binding.numTxt.setText(num+"");
                 binding.totalTxt.setText(num*object.getPrice()+" TL");
             }
+        });
+
+        binding.addBtn.setOnClickListener(v -> {
+            object.setNumberInCart(num);
+            managmentCart.insertFood(object);
         });
     }
 
