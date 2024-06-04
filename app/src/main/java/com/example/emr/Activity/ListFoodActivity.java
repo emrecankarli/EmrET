@@ -43,37 +43,38 @@ public class ListFoodActivity extends BaseActivity {
     }
 
     private void getIntentExtra() {
-        categoryId=getIntent().getIntExtra("CategoryId",0);
-        categoryName=getIntent().getStringExtra("CategoryName");
-        searchText=getIntent().getStringExtra("text");
-        isSearch=getIntent().getBooleanExtra("isSearch",false);
+        categoryId = getIntent().getIntExtra("CategoryId", 0);
+        categoryName = getIntent().getStringExtra("CategoryName");
+        searchText = getIntent().getStringExtra("text");
+        isSearch = getIntent().getBooleanExtra("isSearch", false);
 
         binding.titleTxt.setText(categoryName);
         binding.backBtn.setOnClickListener(v -> finish());
     }
 
 
-    private void initList(){
-        DatabaseReference myRef=database.getReference("Foods");
+
+    private void initList() {
+        DatabaseReference myRef = database.getReference("Foods");
         binding.progressBar.setVisibility(View.VISIBLE);
-        ArrayList<Foods> list=new ArrayList<>();
+        ArrayList<Foods> list = new ArrayList<>();
         Query query;
-        if(isSearch){
-            query=myRef.orderByChild("Title").startAt(searchText).endAt(searchText+'\uf8ff');
-        }else{
-            query=myRef.orderByChild("CategoryId").equalTo(categoryId);
+        if (isSearch) {
+            query = myRef.orderByChild("Title").startAt(searchText).endAt(searchText + '\uf8ff');
+        } else {
+            query = myRef.orderByChild("CategoryId").equalTo(categoryId);
         }
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for(DataSnapshot issue:snapshot.getChildren()){
+                if (snapshot.exists()) {
+                    for (DataSnapshot issue : snapshot.getChildren()) {
                         list.add(issue.getValue(Foods.class));
                     }
-                    if(list.size()>0){
-                        binding.foodListView.setLayoutManager(new GridLayoutManager(ListFoodActivity.this,2));
-                        adapterListFood=new ListFoodAdapter(list);
+                    if (list.size() > 0) {
+                        binding.foodListView.setLayoutManager(new GridLayoutManager(ListFoodActivity.this, 2));
+                        adapterListFood = new ListFoodAdapter(list);
                         binding.foodListView.setAdapter(adapterListFood);
                     }
                     binding.progressBar.setVisibility(View.GONE);
@@ -86,4 +87,5 @@ public class ListFoodActivity extends BaseActivity {
             }
         });
     }
+
 }

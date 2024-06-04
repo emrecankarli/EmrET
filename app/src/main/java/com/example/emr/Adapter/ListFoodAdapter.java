@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.emr.Activity.DetailActivity;
 import com.example.emr.Domain.Foods;
 import com.example.emr.R;
 
@@ -49,6 +50,11 @@ public class ListFoodAdapter extends RecyclerView.Adapter<ListFoodAdapter.viewho
                 .load(items.get(position).getImagePath())
                 .transform( new RoundedCorners(30))
                 .into(holder.pic);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("object", items.get(position));
+        });
     }
 
     @Override

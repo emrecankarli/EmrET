@@ -1,6 +1,7 @@
 package com.example.emr.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.emr.Activity.DetailActivity;
 import com.example.emr.Domain.Foods;
 import com.example.emr.R;
 
@@ -47,6 +49,12 @@ public class BestFoodsAdapter extends RecyclerView.Adapter<BestFoodsAdapter.view
                 .load(items.get(position).getImagePath())
                 .transform(new CenterCrop(), new RoundedCorners(30))
                 .into(holder.pic);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("object", items.get(position));
+            context.startActivity(intent);
+        });
     }
 
     @Override
