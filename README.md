@@ -13,10 +13,11 @@ Bu proje, kullanıcılara çeşitli yemek kategorileri arasında gezinme, en iyi
 
 ## Ekran Görüntüleri
 
-![Kayıt Ekranı](https://github.com/emrecankarli/EmrET/assets/156820008/fbdcac64-a704-4023-b948-6ba14edb4bae)
-![Ana Sayfa](https://github.com/emrecankarli/EmrET/assets/156820008/935e5087-f5ad-4fcf-b3aa-4b69fc8bec77)
-![Yemek Detay Ekranı](https://github.com/emrecankarli/EmrET/assets/156820008/e6175346-e08d-40f7-867c-54e990e1cba2)
-![Sepet Ekranı](https://github.com/emrecankarli/EmrET/assets/156820008/eb48f4b0-e9ad-41a4-a3a9-a86168aa069e)
+<img src="https://github.com/emrecankarli/EmrET/assets/156820008/fbdcac64-a704-4023-b948-6ba14edb4bae" alt="Ana Ekran" width="300">
+<img src="https://github.com/emrecankarli/EmrET/assets/156820008/935e5087-f5ad-4fcf-b3aa-4b69fc8bec77" alt="Ana Ekran" width="300">
+<img src="https://github.com/emrecankarli/EmrET/assets/156820008/e6175346-e08d-40f7-867c-54e990e1cba2" alt="Ana Ekran" width="300">
+<img src="https://github.com/emrecankarli/EmrET/assets/156820008/eb48f4b0-e9ad-41a4-a3a9-a86168aa069e" alt="Ana Ekran" width="300">
+<br>
 
 ## Gereksinimler
 
@@ -55,4 +56,4 @@ Dalınıza push edin: git push origin ozellik/yeniozellik
 Bir pull request oluşturun.
 
 ## Lisans
-Bu proje MIT Lisansı ile lisanslanmıştır. Daha fazla bilgi için LICENSE dosyasına bakın.
+Bu proje MIT Lisansı ile lisanslanmıştır. Daha fazla bilgi için <strong>LICENSE</strong> dosyasına bakın.
